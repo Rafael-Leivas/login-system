@@ -50,7 +50,7 @@ const Login = () => {
           type='submit'
           text='Entrar!'
           onClick={handleSubmit}
-          // disabled={}
+          disabled={loading === true || !validarInput()}
         />
         <div>
           <p>Não possui conta?</p>
