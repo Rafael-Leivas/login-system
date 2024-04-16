@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Container, Form } from "./styles";
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
+import { validarEmail, validarSenha } from "../../Utils/validadores";
 
 const Login = () => {
   const [loading, setLoading] = useState()
+  const [form, setForm] = useState([])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +21,15 @@ const Login = () => {
 
   const handleChange = (event) => {
     console.log('Digitando...', event.target.name, event.target.value)
+    setForm({...form, [event.target.name]: event.target.value})
+    console.log('Form', form)
   }
+
+  const validarInput = () => {
+    return validarEmail(form.email) && validarSenha(form.password)
+  }
+
+  console.log('Form esta válido?',validarInput())
 
   return ( 
     <Container>
